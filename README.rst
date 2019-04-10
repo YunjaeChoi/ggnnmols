@@ -1,7 +1,9 @@
 Gated Graph Neural Network for Molecules
 ***********************************************
 
-Gated graph neural network for molecules in tensorflow.
+Implementation of Gated graph neural network for molecules in tensorflow.
+
+`Gated graph neural network paper <https://arxiv.org/abs/1511.05493>`_
 
 Dependencies
 ============
