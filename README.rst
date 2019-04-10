@@ -14,13 +14,13 @@ Dependencies
 
 2. Tensorflow
 
-cpu-version
+- cpu-version
 
 .. code:: shell
 
     pip install tensorflow
 
-gpu-version
+- gpu-version
 
 .. code:: shell
 
@@ -44,16 +44,20 @@ was used for training.
 
 sdf data was converted to graph.(Only mols valid by rdkit was used.)
 graph data consists:
-    - node features: 
-        1. atomic number(onehot)
-	2. atomic number
-	3. formal charge
-	4. radical eletrons
-	5. is aromatic(bool)
-	6. hybridization(onehot)
-    - edge features:
-	1. bond type(onehot)
-	2. is in ring(bool)
+
+- node features: 
+
+  - atomic number(onehot)
+  - atomic number
+  - formal charge
+  - radical eletrons
+  - is aromatic(bool)
+  - hybridization(onehot)
+  
+- edge features:
+
+  - bond type(onehot)
+  - is in ring(bool)
 
 2. preprocess.py
 ----------------
@@ -68,5 +72,44 @@ Does the following steps:
 
 4. Saves train/val/test data.
 
+Training
+========
 
+1. Model
+--------
 
+Variant of Gated Graph Neural Network(GGNN)
+
+- modifications:
+
+  - modified for undirected graph
+  - edge hidden features are used instead of weights per edge types
+  - node hidden features are updated via stacked GRUs instead of one GRU
+
+2. train.ipynb
+--------------
+
+Does the following steps:
+
+1. Loads preprcessed data
+
+2. Trains with missing labels
+
+3. Saves weights(best)
+
+Result
+======
+
+1. saved_models
+---------------
+
+Current trained model(weights.best.hdf5) is in this folder.
+
+2. evaluate.ipynb
+-----------------
+
+Model can be evaluated.
+
+ex) Receiver Operating Characteristic curve of current saved model.
+
+.. image:: https://github.com/YunjaeChoi/ggnnmols/blob/master/doc/image/roc.png
